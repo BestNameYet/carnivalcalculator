@@ -82,8 +82,40 @@ window.addTickets = addTickets;
 window.addCash = addCash;
 window.clearCash = clearCash;
 
-function selectLocation(name, taxRate) {
-  setLocation(name, taxRate);
-  alert(`Location set to ${name} with tax rate ${taxRate * 100}%`);
-  goNext();
+function bindLocationControls() {
+  const saved = localStorage.getItem('selectedLocation');
+  const selector = document.getElementById('location-selector');
+  const confirmation = document.getElementById('location-confirmation');
+  const currentSpan = document.getElementById('current-location-name');
+
+  if (saved) {
+    const data = JSON.parse(saved);
+    state.location = data.location;
+    state.taxRate = data.taxRate;
+    if (confirmation && currentSpan) {
+      currentSpan.textContent = data.location;
+      confirmation.style.display = 'block';
+    }
+  } else if (selector) {
+    selector.style.display = 'block';
+  }
+
+  document.querySelectorAll('[data-location]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const name = btn.dataset.location;
+      const tax = parseFloat(btn.dataset.tax);
+      setLocation(name, tax);
+      goNext();
+    });
+  });
+
+  const changeBtn = document.getElementById('change-location-btn');
+  if (changeBtn) {
+    changeBtn.addEventListener('click', () => {
+      confirmation.style.display = 'none';
+      selector.style.display = 'block';
+    });
+  }
 }
+
+window.bindLocationControls = bindLocationControls;
