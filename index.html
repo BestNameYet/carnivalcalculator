@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Carnival App</title>
+  <style>
+    .screen { display: none; }
+    .location-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .location-grid button {
+      padding: 10px;
+      margin: 5px;
+      min-width: 180px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+
+  <!-- Scripts -->
+  <script type="module" src="scripts/state_manager.js"></script>
+  <script type="module" src="scripts/state_actions.js"></script>
+  <script type="module" src="scripts/orderReceipt.js"></script>
+  <script type="module" src="scripts/orderTracker.js"></script>
+  <script type="module" src="scripts/changeSummary.js"></script>
+  <script src="scripts/bind_controls.js"></script>
+  <script src="scripts/wizard_navigation.js"></script>
+
+  <script>
+    const screenFiles = ['screen-cash-entry.html', 'screen-change.html', 'screen-discount-bands.html', 'screen-family-packs.html', 'screen-full-bands.html', 'screen-location-confirm.html', 'screen-tickets.html'];
+
+    window.onload = async () => {
+      const container = document.getElementById("app");
+      for (const file of screenFiles) {
+        const res = await fetch("screens/" + file);
+        const html = await res.text();
+        container.insertAdjacentHTML("beforeend", html);
+      }
+      if (typeof bindControls === 'function') bindControls();
+      goToScreen('screen-location-confirm');
+    };
+  </script>
+</body>
+</html>
