@@ -1,0 +1,22 @@
+<!-- screen-full-bands -->
+<section class="screen" id="screen-full-bands">
+<h2>🎟️ Full Price Wristbands</h2>
+<p>Are any full-price wristbands being sold?</p>
+<button onclick="selectFullBands(true)">Yes</button>
+<button onclick="selectFullBands(false)">No</button>
+<div id="full-band-count-controls" style="display:none;">
+<p>How many?</p>
+<div class="counter-ui">
+<button onclick="decrementFullBands()">−</button>
+<span id="full-band-count">0</span>
+<button onclick="incrementFullBands()">+</button>
+</div>
+</div>
+<div id="order-tracker"></div>
+
+  <div class="navigation-buttons">
+    <button class="btn-back">Back</button>
+    <button class="btn-next">Next</button>
+  </div>
+
+</section>

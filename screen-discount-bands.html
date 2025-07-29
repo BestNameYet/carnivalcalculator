@@ -1,0 +1,23 @@
+<!-- screen-discount-bands -->
+<section class="screen" id="screen-discount-bands">
+<h2>🎟️ Discount Wristbands</h2>
+<p>This order already contains <span id="discount-info"></span> wristbands from Family Packs.</p>
+<p>Are additional discounted wristbands being sold today?</p>
+<button onclick="selectDiscountBands(true)">Yes</button>
+<button onclick="selectDiscountBands(false)">No</button>
+<div id="discount-band-count-controls" style="display:none;">
+<p>How many?</p>
+<div class="counter-ui">
+<button onclick="decrementDiscountBands()">−</button>
+<span id="discount-band-count">0</span>
+<button onclick="incrementDiscountBands()">+</button>
+</div>
+</div>
+<div id="order-tracker"></div>
+
+  <div class="navigation-buttons">
+    <button class="btn-back">Back</button>
+    <button class="btn-next">Next</button>
+  </div>
+
+</section>
